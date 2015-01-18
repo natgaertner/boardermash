@@ -1,0 +1,297 @@
+Exception on /twoboarders [GET]
+Traceback (most recent call last):
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "boardermash.py", line 38, in twoboarders
+    player2 = ordered_palyers[idx2]
+NameError: global name 'ordered_palyers' is not defined
+Exception on /mash [POST]
+Traceback (most recent call last):
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "boardermash.py", line 46, in mash
+    session.clear()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/sessions.py", line 126, in _fail
+    raise RuntimeError('the session is unavailable because no secret '
+RuntimeError: the session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+Exception on /twoboarders [GET]
+Traceback (most recent call last):
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "boardermash.py", line 38, in twoboarders
+    player2 = ordered_palyers[idx2]
+NameError: global name 'ordered_palyers' is not defined
+Exception on /mash [POST]
+Traceback (most recent call last):
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "boardermash.py", line 46, in mash
+    session.clear()
+  File "/home/gaertner/code/boardermash/venv/local/lib/python2.7/site-packages/flask/sessions.py", line 126, in _fail
+    raise RuntimeError('the session is unavailable because no secret '
+RuntimeError: the session is unavailable because no secret key was set.  Set the secret_key on the application to something unique and secret.
+global name 'q' is not defined
+Traceback (most recent call last):
+  File "boardermash.py", line 51, in mash
+    q.write(m)
+NameError: global name 'q' is not defined
+global name 'q' is not defined
+Traceback (most recent call last):
+  File "boardermash.py", line 51, in mash
+    q.write(m)
+NameError: global name 'q' is not defined
+global name 'q' is not defined
+Traceback (most recent call last):
+  File "boardermash.py", line 51, in mash
+    q.write(m)
+NameError: global name 'q' is not defined
+global name 'q' is not defined
+Traceback (most recent call last):
+  File "boardermash.py", line 51, in mash
+    q.write(m)
+NameError: global name 'q' is not defined
+global name 'q' is not defined
+Traceback (most recent call last):
+  File "boardermash.py", line 51, in mash
+    q.write(m)
+NameError: global name 'q' is not defined
+enqueuing work {"timestamp": "2015-01-18 14:41:06", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:07", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:07", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:07", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:08", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:08", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:08", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:08", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:08", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:08", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:08", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:09", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:10", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:11", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:11", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:12", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:12", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:12", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:12", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:12", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:12", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:13", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:13", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:14", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:14", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:14", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:14", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:15", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:15", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:15", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:16", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:16", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:16", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:16", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:17", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:17", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:17", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:17", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:17", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:18", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:18", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:18", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:18", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:18", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:18", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:18", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:19", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:19", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:19", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:19", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:19", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:19", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:19", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:20", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:20", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:20", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:20", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:20", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:21", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:21", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:21", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:21", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:21", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:22", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:22", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:22", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:22", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:22", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:22", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:23", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:23", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:23", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:23", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:23", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:23", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:24", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:24", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:24", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:24", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:24", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:24", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:25", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:25", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:25", "leftid": "test1", "winner": "right", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:25", "leftid": "test1", "winner": "left", "rightid": "test2", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:25", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:26", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:26", "leftid": "test2", "winner": "right", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued
+enqueuing work {"timestamp": "2015-01-18 14:41:26", "leftid": "test2", "winner": "left", "rightid": "test1", "remote_addr": "127.0.0.1"}
+work enqueued

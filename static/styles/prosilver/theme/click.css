@@ -1,0 +1,9 @@
+.signature {
+	max-height: 300px;
+	overflow: hidden;
+
+}
+
+.signature img {
+	max-height: 300px;
+}

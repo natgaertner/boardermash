@@ -1,0 +1,9 @@
+body {
+	font-size: 10px;
+}
+
+.signature {
+	max-height: 300px;
+	overflow: hidden;
+	background-color: #fff; 
+}
