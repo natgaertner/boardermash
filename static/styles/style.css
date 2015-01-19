@@ -231,9 +231,10 @@ a#logo:hover {
 	margin-bottom: 4px;
 	background-repeat: no-repeat;
 	background-position: 100% 0;
-	width: 48%;
 	display: inline-block;
-	vertical-align: top;
+	vertical-align: middle;
+	width: 98%;
+	height: 100%;
 }
 
 .post:target .content {
@@ -1108,6 +1109,7 @@ white-space: normal;
 
 .postbody .content {
 	font-size: 1.3em;
+	text-align: center;
 }
 
 .search .postbody {
@@ -3720,4 +3722,28 @@ input.disabled {
 
 #instructions {
 	text-align: center;
+}
+
+div.cellcontainer {
+	width: 49%;
+	text-align: center;
+	position: relative;
+	min-height: 250px;
+	font-size: 1.5em;
+}
+div#focusdiv {
+        display: flex;
+}
+div.spacer {
+	width: 1%;
+}
+div.innercontainer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-bottom: 9px;
+}
+img.av-img {
+	max-height: 200px;
+	max-width: 200px;
 }
