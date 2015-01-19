@@ -35,5 +35,4 @@ nosetests.xml
 *.swo
 
 # data
-*.csv
 *.log
