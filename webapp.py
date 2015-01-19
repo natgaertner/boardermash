@@ -7,11 +7,9 @@ from logging.handlers import RotatingFileHandler
 from datetime import datetime
 import boto.sqs
 from boto.sqs.message import Message
-from mash_experiment import select_close_pair, select_random_pair
 from uuid import uuid4
-import random
+from mash_calc import select_pair
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
-MUTATION_CHANCE = .2
 app = Flask("webapp")
 app.config['SESSION_COOKIE_HTTPONLY'] = False
 file_handler = RotatingFileHandler(os.getenv('FLASK_LOG'))
@@ -30,10 +28,7 @@ def idx():
 @app.route('/twoboarders')
 def twoboarders():
     ordered_players = json.loads(r.get('ordered_players'))
-    if random.random() < MUTATION_CHANCE:
-        idx1,idx2 = select_random_pair(range(len(ordered_players)))
-    else:
-        idx1,idx2 = select_close_pair(range(len(ordered_players)), 20)
+    idx1,idx2 = select_pair(ordered_players)
     player1 = ordered_players[idx1]
     player2 = ordered_players[idx2]
     session['rightkey'] = player2

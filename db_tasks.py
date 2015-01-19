@@ -1,5 +1,5 @@
 from postgres_conn import get_connection
-from mash_experiment import calc_rating
+from mash_calc import calc_rating
 from psycopg2.extras import DictCursor
 import os
 
