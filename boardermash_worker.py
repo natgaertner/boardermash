@@ -1,5 +1,6 @@
 import boto.sqs
 import json
+import os
 import logging, logging.handlers
 from db_tasks import insert_mash, get_ordered_players
 from get_redis_connections import get_redis_connections
@@ -7,14 +8,14 @@ from psycopg2 import IntegrityError
 
 NUM_MESSAGES_TO_GET = 10
 
-rootLogger = logging.getLogger('boardermash')
+rootLogger = logging.getLogger(os.getenv('APPLICATION_NAME'))
 rootLogger.setLevel(logging.DEBUG)
 socketHandler = logging.handlers.SocketHandler('localhost',logging.handlers.DEFAULT_TCP_LOGGING_PORT)
 rootLogger.addHandler(socketHandler)
-logger = logging.getLogger('boardermash.worker')
+logger = logging.getLogger(os.getenv('APPLICATION_NAME')+'.worker')
 redis_connections = get_redis_connections()
 
-q = boto.sqs.connect_to_region('us-west-2').get_queue('boardermashes')
+q = boto.sqs.connect_to_region('us-west-2').get_queue(os.getenv('SQS_QUEUE_NAME'))
 
 class BoarderMashWorker():
     def run(self):

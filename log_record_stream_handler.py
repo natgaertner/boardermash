@@ -3,11 +3,12 @@ import logging
 import logging.handlers
 import SocketServer
 import struct
-BOARDERMASH_LOG_NAME = 'file_boardermash_work_log'
-file_handler = logging.handlers.RotatingFileHandler('boardermashwork.log')
+import os
+LOG_NAME = 'work_log'
+file_handler = logging.handlers.RotatingFileHandler(os.getenv('WORKER_LOG'))
 file_handler.setLevel(logging.DEBUG)
-file_handler.setFormatter(logging.Formatter(fmt='%(relativeCreated)5d %(name)-15s %(levelname)-8s %(message)s'))
-logging.getLogger(BOARDERMASH_LOG_NAME).addHandler(file_handler)
+file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(name)-15s %(levelname)-8s %(message)s'))
+logging.getLogger(LOG_NAME).addHandler(file_handler)
 
 class LogRecordStreamHandler(SocketServer.StreamRequestHandler):
     """Handler for a streaming logging request.
@@ -64,7 +65,7 @@ class LogRecordSocketReceiver(SocketServer.ThreadingTCPServer):
         SocketServer.ThreadingTCPServer.__init__(self, (host, port), handler)
         self.abort = 0
         self.timeout = 1
-        self.logname = BOARDERMASH_LOG_NAME
+        self.logname = LOG_NAME
 
     def serve_until_stopped(self):
         import select

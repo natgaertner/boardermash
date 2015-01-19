@@ -8,21 +8,19 @@ from datetime import datetime
 import boto.sqs
 from boto.sqs.message import Message
 from mash_experiment import select_close_pair, select_random_pair
-from redis_session import RedisSessionInterface
 from uuid import uuid4
 import random
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 MUTATION_CHANCE = .2
-app = Flask(__name__)
+app = Flask("webapp")
 app.config['SESSION_COOKIE_HTTPONLY'] = False
-#rsessions = redis.StrictRedis(host='localhost', port=6379, db=1)
-#app.session_interface = RedisSessionInterface(rsessions)
-#file_handler = RotatingFileHandler('/var/log/boardermash/application.log')
-file_handler = RotatingFileHandler('application.log')
+file_handler = RotatingFileHandler(os.getenv('FLASK_LOG'))
 file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(name)-15s %(levelname)-8s %(message)s'))
 app.logger.addHandler(file_handler)
+app.logger.setLevel(logging.INFO)
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
-q = boto.sqs.connect_to_region('us-west-2').get_queue('boardermashes')
+q = boto.sqs.connect_to_region('us-west-2').get_queue(os.getenv("SQS_QUEUE_NAME"))
 app.secret_key = os.getenv('SESSION_SECRET')
 
 @app.route('/')
@@ -45,18 +43,16 @@ def twoboarders():
 @app.route('/mash', methods=['POST'])
 def mash():
     data = dict(request.json)
-    #data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr, "rightid":session['rightkey'],"leftid":session['leftkey']})
     data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr, "uuid":uuid4().hex})
     if data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
         app.logger.error('session and data keys mismatch. session keys: {rightkey}, {leftkey} data keys: {rightid}, {leftid}'.format(rightkey=session['rightkey'], leftkey=session['leftkey'], rightid = data['rightid'], leftid=data['leftid']))
         return 'a wild haxor appears', 500
     try:
         jsondata = json.dumps(data)
-        app.logger.warn('enqueuing work {data}'.format(data=jsondata))
+        app.logger.info('enqueuing work {data}'.format(data=jsondata))
         m = Message()
         m.set_body(jsondata)
         q.write(m)
-        app.logger.warn('work enqueued')
     except Exception as e:
         app.logger.exception(e)
     return '0', 200

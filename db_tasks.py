@@ -1,9 +1,10 @@
 from postgres_conn import get_connection
 from mash_experiment import calc_rating
 from psycopg2.extras import DictCursor
+import os
 
 def insert_mash(data):
-    conn = get_connection('boardermash')
+    conn = get_connection(os.getenv('POSTGRES_DB'))
     sql = "INSERT INTO mashes(winner_name, loser_name, timestamp,remote_addr, uuid) VALUES (%s, %s, %s, %s, %s)"
     if data['winner'] == 'right':
         winner = data['rightid']
@@ -25,7 +26,7 @@ def insert_mash(data):
     conn.commit()
 
 def get_ordered_players():
-    conn = get_connection('boardermash')
+    conn = get_connection(os.getenv('POSTGRES_DB'))
     sql = "SELECT name from players order by score asc, random()"
     curs = conn.cursor(cursor_factory=DictCursor)
     curs.execute(sql)
