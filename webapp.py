@@ -17,9 +17,12 @@ file_handler.setLevel(logging.INFO)
 file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(name)-15s %(levelname)-8s %(message)s'))
 app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
+app.logger.info('connecting to redis')
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
+app.logger.info('connecting to sqs')
 q = boto.sqs.connect_to_region('us-west-2').get_queue(os.getenv("SQS_QUEUE_NAME"))
 app.secret_key = os.getenv('SESSION_SECRET')
+app.logger.info('setup done')
 
 @app.route('/')
 def idx():

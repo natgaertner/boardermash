@@ -1,5 +1,5 @@
 #!/bin/bash
 
 (redis-server &> /dev/null &)
-source /home/gaertner/code/boardermash/venv/bin/activate
-(python $ENV_ROOT"copy_to_redis.py")
+source $MASH_HOME"/venv/bin/activate"
+(python $ENV_ROOT"boardermash/copy_to_redis.py")
