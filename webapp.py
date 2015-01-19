@@ -19,6 +19,7 @@ app.logger.addHandler(file_handler)
 app.logger.setLevel(logging.INFO)
 app.logger.info('connecting to redis')
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
+av_r = redis.StrictRedis(host='localhost', port=6379, db=1)
 app.logger.info('connecting to sqs')
 q = boto.sqs.connect_to_region('us-west-2').get_queue(os.getenv("SQS_QUEUE_NAME"))
 app.secret_key = os.getenv('SESSION_SECRET')
@@ -36,13 +37,13 @@ def twoboarders():
     player2 = ordered_players[idx2]
     session['rightkey'] = player2
     session['leftkey'] = player1
-    return json.dumps({'leftboarder':{'boarder_name':player1},'rightboarder':{'boarder_name':player2}})
+    return json.dumps({'leftboarder':{'boarder_name':player1, 'av':av_r.get(player1)},'rightboarder':{'boarder_name':player2, 'av':av_r.get(player2)}})
 
 @app.route('/mash', methods=['POST'])
 def mash():
     data = dict(request.json)
     data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr, "uuid":uuid4().hex})
-    if data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
+    if not session.has_key('rightkey') or not session.has_key('leftkey') or data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
         app.logger.error('session and data keys mismatch. session keys: {rightkey}, {leftkey} data keys: {rightid}, {leftid}'.format(rightkey=session['rightkey'], leftkey=session['leftkey'], rightid = data['rightid'], leftid=data['leftid']))
         return 'a wild haxor appears', 500
     try:
