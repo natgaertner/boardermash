@@ -2,9 +2,10 @@ from postgres_conn import get_connection
 from psycopg2.extras import DictCursor
 import redis
 import json
+import os
 
 def get_players():
-    conn = get_connection('boardermash')
+    conn = get_connection(os.getenv('POSTGRES_DB'))
     sql = "SELECT name from players order by score asc, random()"
     curs = conn.cursor(cursor_factory=DictCursor)
     curs.execute(sql)

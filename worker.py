@@ -50,5 +50,5 @@ class BoarderMashWorker():
                 logger.error("couldn't delete " + e.message)
 
 if __name__ == '__main__':
-    logger.info('starting boardermash worker')
+    logger.info('starting worker')
     while True: BoarderMashWorker().run()
