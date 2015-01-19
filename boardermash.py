@@ -8,6 +8,8 @@ from datetime import datetime
 import boto.sqs
 from boto.sqs.message import Message
 from mash_experiment import select_close_pair, select_random_pair
+from redis_session import RedisSessionInterface
+from uuid import uuid4
 import random
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 MUTATION_CHANCE = .2
@@ -21,7 +23,7 @@ file_handler.setLevel(logging.INFO)
 app.logger.addHandler(file_handler)
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 q = boto.sqs.connect_to_region('us-west-2').get_queue('boardermashes')
-#app.secret_key = os.getenv('SESSION_SECRET')
+app.secret_key = os.getenv('SESSION_SECRET')
 
 @app.route('/')
 def idx():
@@ -36,13 +38,18 @@ def twoboarders():
         idx1,idx2 = select_close_pair(range(len(ordered_players)), 20)
     player1 = ordered_players[idx1]
     player2 = ordered_players[idx2]
+    session['rightkey'] = player2
+    session['leftkey'] = player1
     return json.dumps({'leftboarder':{'boarder_name':player1},'rightboarder':{'boarder_name':player2}})
 
 @app.route('/mash', methods=['POST'])
 def mash():
     data = dict(request.json)
     #data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr, "rightid":session['rightkey'],"leftid":session['leftkey']})
-    data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr})
+    data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr, "uuid":uuid4().hex})
+    if data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
+        app.logger.error('session and data keys mismatch. session keys: {rightkey}, {leftkey} data keys: {rightid}, {leftid}'.format(rightkey=session['rightkey'], leftkey=session['leftkey'], rightid = data['rightid'], leftid=data['leftid']))
+        return 'a wild haxor appears', 500
     try:
         jsondata = json.dumps(data)
         app.logger.warn('enqueuing work {data}'.format(data=jsondata))

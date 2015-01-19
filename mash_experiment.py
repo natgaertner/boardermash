@@ -22,6 +22,9 @@ def random_slice(lst, slice_len, min_slice_len):
     r = random.randint(-slice_len+min_slice_len ,len(lst)-min_slice_len)
     return lst[max(r,0):min(len(lst),r+slice_len)]
 
+def calc_rating(winner_rating, loser_rating):
+    return ec.new_rating(winner_rating, loser_rating, skills.WIN).mean, ec.new_rating(loser_rating, winner_rating, skills.LOSE).mean
+
 def new_ratings(idx1,idx2, player_scores,outcome):
     (player1, rating1) = player_scores[idx1]
     (player2, rating2) = player_scores[idx2]

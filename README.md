@@ -1,4 +1,3 @@
-postmash
+boardermash
 ========
-
-some interstitial work for hipinion postmash
+new and improved mashing

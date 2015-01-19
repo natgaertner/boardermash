@@ -9,13 +9,26 @@ $(document).ready(function() {
 	}, "json");
 	};
 	getboarders();
-	$(document).keydown(function(event) {
+
+	function debounce(fn, delay) {
+		var timer = null;
+		return function () {
+			var context = this, args = arguments;
+			clearTimeout(timer);
+			timer = setTimeout(function () {
+				fn.apply(context, args);
+			}, delay);
+		};
+	};
+
+	function mash(event) {
 		var winner;
 		if(event.which == 37) {
 			winner = "left";
 		} else if (event.which == 39) {
 			winner = "right";
 		} else {
+			$(document).bind('keydown',mash);
 			return;
 		}
 		$.ajax({
@@ -27,5 +40,6 @@ $(document).ready(function() {
 		    dataType: "json"
 		});
 		getboarders();
-	});
+	};
+	$(document).bind('keydown', debounce(mash,100));
 });
