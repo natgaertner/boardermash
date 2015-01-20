@@ -15,7 +15,7 @@ def get_players():
     r.set('ordered_players', json.dumps(players_ordered))
 
 def get_avs():
-    with open('static/has_av_map.csv') as f:
+    with open('static/csv/has_av_map.csv') as f:
         has_av_map = csv.DictReader(f)
         r = redis.StrictRedis(host='localhost',port=6379,db=1)
         for row in has_av_map:
