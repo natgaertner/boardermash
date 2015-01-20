@@ -1,62 +1,89 @@
-
 $(document).ready(function() {
-	function getboarders() {
-	$.get("/twoboarders", function(data) {
-	    $("#leftboarder").html(data['leftboarder']['boarder_name']);
-	    $("#leftboarder").show();
-	    $("#leftboarder").data("id", data['leftboarder']['boarder_name']);
-	    $("#leftboarder").data("uuid", data['matchuuid']);
-	    if (data['leftboarder']['av']){
-            	$("#leftav").attr("src", "http://duc0plcpp9l5c.cloudfront.net/static/images/avs/"+data['leftboarder']['av']);
-		$("#leftav").show();
-	    } else {
-		$("#leftav").attr("src","");
-		$("#leftav").hide();
-	    }
-	    $("#rightboarder").html(data['rightboarder']['boarder_name']);
-	    $("#rightboarder").show();
-	    $("#rightboarder").data("id", data['rightboarder']['boarder_name']);
-	    if (data['rightboarder']['av']){
-            	$("#rightav").attr("src", "http://duc0plcpp9l5c.cloudfront.net/static/images/avs/"+data['rightboarder']['av']);
-		$("#rightav").show();
-	    } else {
-		$("#rightav").attr("src","");
-		$("#rightav").hide();
-	    }
-	}, "json");
-	};
-	getboarders();
 
-	function debounce(fn, delay) {
-		var timer = null;
-		return function () {
-			var context = this, args = arguments;
-			clearTimeout(timer);
-			timer = setTimeout(function () {
-				fn.apply(context, args);
-			}, delay);
-		};
-	};
-	function mash(event) {
-		var winner;
-		if(event.which == 37) {
-			winner = "left";
-		} else if (event.which == 39) {
-			winner = "right";
-		} else {
-			$(document).bind('keydown',mash);
-			return;
-		}
-		$('.refreshelement').hide();
-		$.ajax({
-		    async: false,
-		    type: "POST",
-		    url: "/mash",
-		    data: JSON.stringify({leftid:$("#leftboarder").data("id"),rightid:$("#rightboarder").data("id"),winner:winner,uuid:$("#leftboarder").data("uuid")}),
-		    contentType: "application/json; charset=utf-8",
-		    dataType: "json"
-		});
-		getboarders();
-	};
-	$(document).bind('keyup',mash);
+  var ready = false, leftBoarder, rightBoarder,
+    $leftName, $rightName, $leftAv, $rightAv, uuid;
+
+  var init = function(){
+    $leftName = $('#leftboarder');
+    $rightName = $('#rightboarder');
+    $leftAv = $('#leftav');
+    $rightAv = $('#rightav');
+  }
+
+  var getBoarders = function() {
+    $.get("/twoboarders", function(data) {
+
+      leftBoarder = data.leftboarder;
+      rightBoarder = data.rightboarder;
+      uuid = data.matchuuid;
+
+      $leftName.text(leftBoarder.boarder_name);
+
+      if (leftBoarder.av) {
+        $leftAv.attr("src", "http://duc0plcpp9l5c.cloudfront.net/static/images/avs/"+leftBoarder.av);
+        $leftAv.show();
+      } 
+      else {
+        $leftAv.attr("src","");
+	$leftAv.hide()
+      }
+
+      $rightName.text(rightBoarder.boarder_name);
+
+      if (rightBoarder.av) {
+        $rightAv.attr("src", "http://duc0plcpp9l5c.cloudfront.net/static/images/avs/"+rightBoarder.av);
+        $rightAv.show();
+      } 
+      else {
+        $rightAv.attr("src","");
+	$rightAv.hide()
+      }
+
+      ready = true;
+    }, "json");
+  };
+
+  var keyUpHandler = function(event) {
+    if(event.which == 37) {
+      declareWinner("left");
+    } else if (event.which == 39) {
+      declareWinner("right");
+    }
+  };
+
+  var declareWinner = function(winner) {
+    if (!ready) return;
+    ready = false;
+    $rightAv.hide();
+    $leftAv.hide();
+    $rightName.text('');
+    $leftName.text('');
+
+    var dataToPost=JSON.stringify({leftid:leftBoarder.boarder_name,rightid:rightBoarder.boarder_name,winner:winner,uuid:uuid});
+    $.ajax({
+        type: "POST",
+        url: "/mash",
+        data: dataToPost,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json"
+    });
+
+    getBoarders();
+  }
+
+  init();
+  getBoarders();
+  $(document).on('keyup',keyUpHandler);
+  $(document).on('click', '#leftav', function(){
+    declareWinner("left");
+  });
+  $(document).on('click', '#rightav', function(){
+    declareWinner("right");
+  });
+  $(document).on('click', '#leftboarder', function(){
+    declareWinner("left");
+  });
+  $(document).on('click', '#rightboarder', function(){
+    declareWinner("right");
+  });
 });
