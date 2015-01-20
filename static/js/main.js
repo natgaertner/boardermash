@@ -6,7 +6,7 @@ $(document).ready(function() {
 	    $("#leftboarder").show();
 	    $("#leftboarder").data("id", data['leftboarder']['boarder_name']);
 	    if (data['leftboarder']['av']){
-            	$("#leftav").attr("src", "/static/images/avs/"+data['leftboarder']['av']);
+            	$("#leftav").attr("src", "http://duc0plcpp9l5c.cloudfront.net/static/images/avs/"+data['leftboarder']['av']);
 		$("#leftav").show();
 	    } else {
 		$("#leftav").attr("src","");
@@ -16,7 +16,7 @@ $(document).ready(function() {
 	    $("#rightboarder").show();
 	    $("#rightboarder").data("id", data['rightboarder']['boarder_name']);
 	    if (data['rightboarder']['av']){
-            	$("#rightav").attr("src", "/static/images/avs/"+data['rightboarder']['av']);
+            	$("#rightav").attr("src", "http://duc0plcpp9l5c.cloudfront.net/static/images/avs/"+data['rightboarder']['av']);
 		$("#rightav").show();
 	    } else {
 		$("#rightav").attr("src","");
