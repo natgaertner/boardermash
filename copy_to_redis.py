@@ -15,11 +15,11 @@ def get_players():
     r.set('ordered_players', json.dumps(players_ordered))
 
 def get_avs():
-    with open('boarder_to_av.csv','ru') as btoav:
-        btoav = csv.DictReader(btoav)
+    with open('static/has_av_map.csv') as f:
+        has_av_map = csv.DictReader(f)
         r = redis.StrictRedis(host='localhost',port=6379,db=1)
-        for row in btoav:
-            r.set(row['boarder'],row['av_img'])
+        for row in has_av_map:
+            r.set(row['username'],row['userid'])
 
 if __name__ == '__main__':
     get_players()

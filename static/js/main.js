@@ -4,10 +4,22 @@ $(document).ready(function() {
 	$.get("/twoboarders", function(data) {
 	    $("#leftboarder").html(data['leftboarder']['boarder_name']);
 	    $("#leftboarder").data("id", data['leftboarder']['boarder_name']);
-            $("#leftav").attr("src", "/static/images/"+data['leftboarder']['av']);
+	    if (data['leftboarder']['av']){
+            	$("#leftav").attr("src", "/static/images/avs/"+data['leftboarder']['av']);
+		$("#leftav").show();
+	    } else {
+		$("#leftav").attr("src","");
+		$("#leftav").hide();
+	    }
 	    $("#rightboarder").html(data['rightboarder']['boarder_name']);
 	    $("#rightboarder").data("id", data['rightboarder']['boarder_name']);
-            $("#rightav").attr("src", "/static/images/"+data['rightboarder']['av']);
+	    if (data['rightboarder']['av']){
+            	$("#rightav").attr("src", "/static/images/avs/"+data['rightboarder']['av']);
+		$("#rightav").show();
+	    } else {
+		$("#rightav").attr("src","");
+		$("#rightav").hide();
+	    }
 	}, "json");
 	};
 	getboarders();

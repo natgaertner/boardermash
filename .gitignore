@@ -36,3 +36,5 @@ nosetests.xml
 
 # data
 *.log
+/static/largedata
+/static/images/avs
