@@ -44,6 +44,7 @@ class BoarderMashWorker():
                 pass
             except Exception as e:
                 logger.error('exception inserting ' + traceback.format_exc())
+                logger.info('data: {data}'.format(data=json.dumps(data)))
                 return
             try:
                 q.delete_message(message)
