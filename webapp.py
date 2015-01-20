@@ -35,6 +35,7 @@ def twoboarders():
     idx1,idx2 = select_pair(ordered_players)
     player1 = ordered_players[idx1]
     player2 = ordered_players[idx2]
+    app.logger.debug('leftkey: {player1} rightkey: {player2}'.format(player1=player1.encode('utf-8'), player2=player2.encode('utf-8')))
     session['rightkey'] = player2
     session['leftkey'] = player1
     return json.dumps({'leftboarder':{'boarder_name':player1, 'av':av_r.get(player1)},'rightboarder':{'boarder_name':player2, 'av':av_r.get(player2)}})
@@ -43,12 +44,14 @@ def twoboarders():
 def mash():
     data = dict(request.json)
     data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr, "uuid":uuid4().hex})
+
     if not session.has_key('rightkey') or not session.has_key('leftkey') or data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
         app.logger.error('session and data keys mismatch. session keys: {rightkey}, {leftkey} data keys: {rightid}, {leftid}'.format(rightkey=session['rightkey'], leftkey=session['leftkey'], rightid = data['rightid'], leftid=data['leftid']))
         return 'a wild haxor appears', 500
     try:
         jsondata = json.dumps(data)
-        app.logger.info('enqueuing work {data}'.format(data=jsondata))
+        app.logger.debug('enqueuing work {data}'.format(data=jsondata, session_rkey=session['rightkey'], session_lkey=session['leftkey']))
+        app.logger.debug('session_key_right: {session_rkey} session_key_left: {session_lkey}'.format(session_rkey=session['rightkey'].encode('utf-8'), session_lkey=session['leftkey'].encode('utf-8')))
         m = Message()
         m.set_body(jsondata)
         q.write(m)
