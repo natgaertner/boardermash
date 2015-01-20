@@ -58,5 +58,5 @@ $(document).ready(function() {
 		});
 		getboarders();
 	};
-	$(document).bind('keydown', debounce(mash,100));
+	$(document).bind('keyup',mash);
 });
