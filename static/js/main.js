@@ -37,7 +37,6 @@ $(document).ready(function() {
 			}, delay);
 		};
 	};
-	$('.refreshelement').hide();
 	function mash(event) {
 		var winner;
 		if(event.which == 37) {
@@ -48,6 +47,7 @@ $(document).ready(function() {
 			$(document).bind('keydown',mash);
 			return;
 		}
+		$('.refreshelement').hide();
 		$.ajax({
 		    async: false,
 		    type: "POST",
