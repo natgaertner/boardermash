@@ -3,6 +3,7 @@ $(document).ready(function() {
 	function getboarders() {
 	$.get("/twoboarders", function(data) {
 	    $("#leftboarder").html(data['leftboarder']['boarder_name']);
+	    $("#leftboarder").show();
 	    $("#leftboarder").data("id", data['leftboarder']['boarder_name']);
 	    if (data['leftboarder']['av']){
             	$("#leftav").attr("src", "/static/images/avs/"+data['leftboarder']['av']);
@@ -12,6 +13,7 @@ $(document).ready(function() {
 		$("#leftav").hide();
 	    }
 	    $("#rightboarder").html(data['rightboarder']['boarder_name']);
+	    $("#rightboarder").show();
 	    $("#rightboarder").data("id", data['rightboarder']['boarder_name']);
 	    if (data['rightboarder']['av']){
             	$("#rightav").attr("src", "/static/images/avs/"+data['rightboarder']['av']);
@@ -34,7 +36,7 @@ $(document).ready(function() {
 			}, delay);
 		};
 	};
-
+	$('.refreshelement').hide();
 	function mash(event) {
 		var winner;
 		if(event.which == 37) {
