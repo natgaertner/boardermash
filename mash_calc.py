@@ -3,7 +3,7 @@ import random
 from skills import elo
 from sorted_collection import SortedCollection
 
-WINDOW_WIDTH = 20
+WINDOW_WIDTH = 40
 MUTATION_RATE = 0.3
 ec = elo.EloCalculator(k_factor=1)
 
