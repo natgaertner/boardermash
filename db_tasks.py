@@ -12,6 +12,9 @@ def insert_mash(data):
     else:
         winner = data['leftid']
         loser = data['rightid']
+    # we get unicode objects from the request, but encoded utf-8 from the database
+    winner = winner.encode('utf-8')
+    loser = loser.encode('utf-8')
     conn.cursor().execute(sql, (winner, loser, data['timestamp'], data['remote_addr'], data['uuid']))
     player_lock_sql = "SELECT name, score from players where name = %s or name = %s FOR UPDATE"
     curs = conn.cursor(cursor_factory=DictCursor)

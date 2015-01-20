@@ -38,7 +38,7 @@ class BoarderMashWorker():
                 ordered_players = get_ordered_players()
                 for r in redis_connections:
                     r.set('ordered_players', json.dumps(ordered_players))
-                    logger.info('updated players in redis host {r}'.format(r=r.host))
+                logger.info('updated players in redis hosts')
             except IntegrityError:
                 #if it's a unique constraint violation we don't care
                 pass
