@@ -5,6 +5,7 @@ $(document).ready(function() {
 	    $("#leftboarder").html(data['leftboarder']['boarder_name']);
 	    $("#leftboarder").show();
 	    $("#leftboarder").data("id", data['leftboarder']['boarder_name']);
+	    $("#leftboarder").data("uuid", data['matchuuid']);
 	    if (data['leftboarder']['av']){
             	$("#leftav").attr("src", "http://duc0plcpp9l5c.cloudfront.net/static/images/avs/"+data['leftboarder']['av']);
 		$("#leftav").show();
@@ -51,7 +52,7 @@ $(document).ready(function() {
 		    async: false,
 		    type: "POST",
 		    url: "/mash",
-		    data: JSON.stringify({leftid:$("#leftboarder").data("id"),rightid:$("#rightboarder").data("id"),winner:winner}),
+		    data: JSON.stringify({leftid:$("#leftboarder").data("id"),rightid:$("#rightboarder").data("id"),winner:winner,uuid:$("#leftboarder").data("uuid")}),
 		    contentType: "application/json; charset=utf-8",
 		    dataType: "json"
 		});
