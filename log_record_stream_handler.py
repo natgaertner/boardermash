@@ -5,7 +5,7 @@ import SocketServer
 import struct
 import os
 LOG_NAME = 'work_log'
-file_handler = logging.handlers.RotatingFileHandler(os.getenv('WORKER_LOG'))
+file_handler = logging.handlers.RotatingFileHandler(os.getenv('WORKER_LOG'), maxBytes=5*(2**20), backupCount=10)
 file_handler.setLevel(logging.DEBUG)
 file_handler.setFormatter(logging.Formatter(fmt='%(asctime)s %(name)-15s %(levelname)-8s %(message)s'))
 logging.getLogger(LOG_NAME).addHandler(file_handler)
