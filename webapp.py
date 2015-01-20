@@ -48,12 +48,9 @@ def mash():
     data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.headers.get('X-Forwarded-For')})
     if not data.has_key('uuid'):
         data['uuid'] = session['uuid']
-    if not session.has_key('rightkey') or not session.has_key('leftkey') or data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
-        app.logger.warn('session and data keys mismatch. session keys: {rightkey}, {leftkey} data keys: {rightid}, {leftid}'.format(rightkey=session['rightkey'], leftkey=session['leftkey'], rightid = data['rightid'], leftid=data['leftid']))
-        #return 'a wild haxor appears', 500
     try:
         jsondata = json.dumps(data)
-        app.logger.debug('enqueuing work {data}'.format(data=jsondata, session_rkey=session['rightkey'], session_lkey=session['leftkey']))
+        app.logger.debug('enqueuing work {data}'.format(data=jsondata))
         app.logger.debug('session_key_right: {session_rkey} session_key_left: {session_lkey}'.format(session_rkey=session['rightkey'].encode('utf-8'), session_lkey=session['leftkey'].encode('utf-8')))
         m = Message()
         m.set_body(jsondata)
