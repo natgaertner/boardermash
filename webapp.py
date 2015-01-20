@@ -38,12 +38,13 @@ def twoboarders():
     app.logger.debug('leftkey: {player1} rightkey: {player2}'.format(player1=player1.encode('utf-8'), player2=player2.encode('utf-8')))
     session['rightkey'] = player2
     session['leftkey'] = player1
+    session['uuid'] = uuid4().hex
     return json.dumps({'leftboarder':{'boarder_name':player1, 'av':av_r.get(player1)},'rightboarder':{'boarder_name':player2, 'av':av_r.get(player2)}})
 
 @app.route('/mash', methods=['POST'])
 def mash():
     data = dict(request.json)
-    data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.headers.get('X-Forwarded-For'), "uuid":uuid4().hex})
+    data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.headers.get('X-Forwarded-For'), "uuid":session['uuid']})
 
     if not session.has_key('rightkey') or not session.has_key('leftkey') or data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
         app.logger.error('session and data keys mismatch. session keys: {rightkey}, {leftkey} data keys: {rightid}, {leftid}'.format(rightkey=session['rightkey'], leftkey=session['leftkey'], rightid = data['rightid'], leftid=data['leftid']))
