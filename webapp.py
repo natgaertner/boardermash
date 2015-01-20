@@ -43,7 +43,7 @@ def twoboarders():
 @app.route('/mash', methods=['POST'])
 def mash():
     data = dict(request.json)
-    data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.remote_addr, "uuid":uuid4().hex})
+    data.update({"timestamp":datetime.now().strftime(TIME_FORMAT), "remote_addr":request.headers.get('X-Forwarded-For'), "uuid":uuid4().hex})
 
     if not session.has_key('rightkey') or not session.has_key('leftkey') or data['rightid'] != session['rightkey'] or data['leftid'] != session['leftkey']:
         app.logger.error('session and data keys mismatch. session keys: {rightkey}, {leftkey} data keys: {rightid}, {leftid}'.format(rightkey=session['rightkey'], leftkey=session['leftkey'], rightid = data['rightid'], leftid=data['leftid']))
