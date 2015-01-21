@@ -10,6 +10,7 @@ from boto.sqs.message import Message
 from uuid import uuid4
 from mash_calc import select_pair
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+UUID_EX_SECONDS = 600
 app = Flask("webapp")
 app.config['SESSION_COOKIE_HTTPONLY'] = False
 file_handler = RotatingFileHandler(os.getenv('FLASK_LOG'))
@@ -20,6 +21,7 @@ app.logger.setLevel(logging.INFO)
 app.logger.info('connecting to redis')
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 av_r = redis.StrictRedis(host='localhost', port=6379, db=1)
+uuid_r = redis.StrictRedis(host='localhost',port=6379,db=2)
 app.logger.info('connecting to sqs')
 q = boto.sqs.connect_to_region('us-west-2').get_queue(os.getenv("SQS_QUEUE_NAME"))
 app.secret_key = os.getenv('SESSION_SECRET')
@@ -39,6 +41,7 @@ def twoboarders():
     session['rightkey'] = player2
     session['leftkey'] = player1
     uuid = uuid4().hex
+    uuid_r.setex(uuid,UUID_EX_SECONDS,json.dumps({'leftkey':player1,'rightkey':player2}))
     session['uuid'] = uuid
     return json.dumps({'matchuuid':uuid,'leftboarder':{'boarder_name':player1, 'av':av_r.get(player1)},'rightboarder':{'boarder_name':player2, 'av':av_r.get(player2)}})
 
