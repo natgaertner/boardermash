@@ -40,7 +40,7 @@ class BoarderMashWorker():
                         keys = json.loads(keys)
                         break
                 if keys == None or keys['rightkey'] != data['rightid'] or keys['leftkey'] != data['leftid']:
-                    logger.warn('bad uuid: {uuid} rightkey: {rk} leftkey: {lk}'.format(uuid=data['uuid'], rk=data['rightid'], lk=data['leftid']))
+                    logger.warn('bad uuid: {uuid} from {ra} rightkey: {rk} leftkey: {lk}'.format(uuid=data['uuid'], rk=data['rightid'], lk=data['leftid'], ra=data['remote_addr']))
                     q.delete_message(message)
                     return
             except Exception as e:
