@@ -3731,9 +3731,12 @@ div.cellcontainer {
 	min-height: 250px;
 	font-size: 1.5em;
 }
-div#focusdiv {
-        display: flex;
+div#focusdiv{ 
+	display: -ms-flex; 
+	display: -webkit-flex; 
+	display: flex; 
 }
+
 div.spacer {
 	width: 1%;
 }
