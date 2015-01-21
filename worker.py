@@ -15,6 +15,7 @@ socketHandler = logging.handlers.SocketHandler('localhost',logging.handlers.DEFA
 rootLogger.addHandler(socketHandler)
 logger = logging.getLogger(os.getenv('APPLICATION_NAME')+'.worker')
 redis_connections = get_redis_connections()
+uuid_redis_connections = get_redis_connections(db=2)
 
 q = boto.sqs.connect_to_region('us-west-2').get_queue(os.getenv('SQS_QUEUE_NAME'))
 
@@ -31,6 +32,19 @@ class BoarderMashWorker():
                 data = json.loads(message.get_body())
             except Exception as e:
                 logger.warn('badly formed message ' + traceback.format_exc())
+                return
+            try:
+                for r in uuid_redis_connections:
+                    keys = r.get(data['uuid'])
+                    if keys != None:
+                        keys = json.loads(keys)
+                        break
+                if keys == None or keys['rightkey'] != data['rightid'] or keys['leftkey'] != data['leftid']:
+                    logger.warn('bad uuid: {uuid} rightkey: {rk} leftkey: {lk}'.format(uuid=data['uuid'], rk=data['rightid'], lk=data['leftid']))
+                    q.delete_message(message)
+                    return
+            except Exception as e:
+                logger.error(traceback.format_exc())
                 return
             try:
                 insert_mash(data)
@@ -50,6 +64,11 @@ class BoarderMashWorker():
                 q.delete_message(message)
             except Exception as e:
                 logger.error("couldn't delete " + traceback.format_exc())
+            try:
+                for r in uuid_redis_connections:
+                    r.delete(data['uuid'])
+            except Exception as e:
+                logger.error("couldn't delete from uuid redis " + traceback.format_exc())
 
 if __name__ == '__main__':
     logger.info('starting worker')
