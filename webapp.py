@@ -33,6 +33,10 @@ def idx():
     return render_template('index.html')
 
 @app.route('/twoboarders')
+def refresh():
+    return json.dumps({'leftboarder':{'boarder_name':"YOU NEED TO REFRESH"}, 'rightboarder':{'boarder_name':"YOU STILL NEED TO REFRESH"}})
+
+@app.route('/twoboarders2')
 def twoboarders():
     ordered_players = json.loads(r.get('ordered_players'))
     idx1,idx2 = select_pair(ordered_players)

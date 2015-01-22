@@ -11,7 +11,7 @@ $(document).ready(function() {
   }
 
   var getBoarders = function() {
-    $.get("/twoboarders", function(data) {
+    $.get("/twoboarders2", function(data) {
 
       leftBoarder = data.leftboarder;
       rightBoarder = data.rightboarder;
