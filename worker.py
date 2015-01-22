@@ -6,6 +6,7 @@ from db_tasks import insert_mash, get_ordered_players
 from get_redis_connections import get_redis_connections
 from psycopg2 import IntegrityError
 import traceback
+import hmac
 
 NUM_MESSAGES_TO_GET = 10
 
@@ -14,8 +15,8 @@ rootLogger.setLevel(logging.DEBUG)
 socketHandler = logging.handlers.SocketHandler('localhost',logging.handlers.DEFAULT_TCP_LOGGING_PORT)
 rootLogger.addHandler(socketHandler)
 logger = logging.getLogger(os.getenv('APPLICATION_NAME')+'.worker')
-redis_connections = get_redis_connections()
-uuid_redis_connections = get_redis_connections(db=2)
+redis_connections = get_redis_connections(db=0)
+secret_key = os.getenv('SECRET_KEY')
 
 q = boto.sqs.connect_to_region('us-west-2').get_queue(os.getenv('SQS_QUEUE_NAME'))
 
@@ -34,13 +35,11 @@ class BoarderMashWorker():
                 logger.warn('badly formed message ' + traceback.format_exc())
                 return
             try:
-                for r in uuid_redis_connections:
-                    keys = r.get(data['uuid'])
-                    if keys != None:
-                        keys = json.loads(keys)
-                        break
-                if keys == None or keys['rightkey'] != data['rightid'] or keys['leftkey'] != data['leftid']:
-                    logger.warn('bad uuid: {uuid} from {ra} rightkey: {rk} leftkey: {lk}'.format(uuid=data['uuid'], rk=data['rightid'], lk=data['leftid'], ra=data['remote_addr']))
+                import pdb;pdb.set_trace()
+                user_data = json.dumps({'uuid':data['uuid'],'leftboarder':data['leftid'],'rightboarder':data['rightid']})
+                user_data_hmac = hmac.new(secret_key,user_data).hexdigest()
+                if user_data_hmac != data.get('hmac',''):
+                    logger.warn('bad hmac for uuid: {uuid} rightid: {rightid} leftid: {leftid})'.format(**data))
                     q.delete_message(message)
                     return
             except Exception as e:
