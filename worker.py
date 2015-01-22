@@ -38,7 +38,7 @@ class BoarderMashWorker():
                 user_data = json.dumps({'uuid':data['uuid'],'leftboarder':data['leftid'],'rightboarder':data['rightid']})
                 user_data_hmac = hmac.new(secret_key,user_data).hexdigest()
                 if user_data_hmac != data.get('hmac',''):
-                    logger.warn('bad hmac data:{data}'.format(json.dumps(data)))
+                    logger.warn('bad hmac data:{data}'.format(data=json.dumps(data)))
                     q.delete_message(message)
                     return
             except Exception as e:
