@@ -35,7 +35,6 @@ class BoarderMashWorker():
                 logger.warn('badly formed message ' + traceback.format_exc())
                 return
             try:
-                import pdb;pdb.set_trace()
                 user_data = json.dumps({'uuid':data['uuid'],'leftboarder':data['leftid'],'rightboarder':data['rightid']})
                 user_data_hmac = hmac.new(secret_key,user_data).hexdigest()
                 if user_data_hmac != data.get('hmac',''):
@@ -63,11 +62,6 @@ class BoarderMashWorker():
                 q.delete_message(message)
             except Exception as e:
                 logger.error("couldn't delete " + traceback.format_exc())
-            try:
-                for r in uuid_redis_connections:
-                    r.delete(data['uuid'])
-            except Exception as e:
-                logger.error("couldn't delete from uuid redis " + traceback.format_exc())
 
 if __name__ == '__main__':
     logger.info('starting worker')
