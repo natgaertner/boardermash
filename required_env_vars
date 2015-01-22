@@ -9,6 +9,6 @@ export POSTGRES_USER=
 export POSTGRES_PW=
 export POSTGRES_HOST=
 export POSTGRES_DB=
-export SESSION_SECRET=
 export REDIS_HOST_SET=
 export SQS_QUEUE_NAME=
+export SECRET_KEY=
